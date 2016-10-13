@@ -51,11 +51,28 @@
 							<port>9090</port>
 						</connector>
 					</connectors>
-					<!-- <contextPath>calculo</contextPath> <scanIntervalSeconds>3</scanIntervalSeconds> -->
+
 					<stopPort>9966</stopPort>
 					<stopKey>jetty-stop</stopKey>
 				</configuration>
+				<executions>
+					<execution>
+						<id>start-jetty</id>
+						<phase>pre-integration-test</phase>
+						<goals> 
+							<goal>run-forked</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop-jetty</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 </project>
